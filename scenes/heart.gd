@@ -1,14 +1,18 @@
 extends Area2D
 
-
-var healing = false
+var is_idle = true
 
 func _ready():
-	pass
+	_basic_movement()
 	
 
+func _basic_movement():
+	if is_idle == true:
+		$AnimatedSprite2D.play("idle")
 
 func _on_body_entered(body):
 	if body is Player:
-		healing = true
-		
+		print("Player healed by using a HP item.")
+		$AnimatedSprite2D.play("used")
+		await get_tree().create_timer(0.583).timeout
+		queue_free()
