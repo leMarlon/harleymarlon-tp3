@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 const speed = 140
 var current_dir = "none"
 @onready var deathsound = $death
