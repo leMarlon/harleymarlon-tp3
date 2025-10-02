@@ -1,5 +1,7 @@
 extends Area2D
 
+
+class_name heart_item
 var is_idle = true
 
 func _ready():

@@ -106,9 +106,15 @@ func player():
 	pass
 
 
+
+
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_inattack_range = true
+	if body.has_method("heart"):
+		health = health + 10
+		print("Player health is now :", health)
+		
 		
 
 
