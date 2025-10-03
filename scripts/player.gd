@@ -8,12 +8,12 @@ var current_dir = "none"
 @onready var slashsound = $slash
 
 
-
+var ismoving = false
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var health = 100
 var player_alive = true
-
+var is_hit = false
 var attack_ip = false
 
 
@@ -40,38 +40,55 @@ func player_movement(delta):
 		velocity = Vector2.ZERO
 		return
 		
+	if is_hit:
+		velocity = Vector2.ZERO
+		return
 		
+	var was_moving = ismoving
+	
 
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
+		ismoving = true
 		velocity.x = speed
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_left"):
 		current_dir = "left"
 		play_anim(1)
+		ismoving = true
 		velocity.x = -speed
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_down"):
 		current_dir = "down"
 		play_anim(1)
+		ismoving = true
 		velocity.x = 0
 		velocity.y = speed
 	elif Input.is_action_pressed("ui_up"):
 		current_dir = "up"
 		play_anim(1)
+		ismoving = true
 		velocity.x = 0
 		velocity.y = -speed
 	else:
 		play_anim(0)
+		ismoving = false
 		velocity.x = 0
 		velocity.y = 0
-			
 	move_and_slide()
+		
+	if ismoving and not was_moving:
+		print("The player started walking.")
+	elif not ismoving and was_moving:
+		pass
 		
 func play_anim(movement):
 	var dir = current_dir
 	var anim = $AnimatedSprite2D
+	
+	if is_hit:
+		return
 	
 	if dir == "right":
 		anim.flip_h = false
@@ -129,6 +146,24 @@ func enemy_attack():
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
 		print("The player has been hit, Player health : ", health)
+		
+		var dir = current_dir
+		is_hit = true
+		if dir == "right":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("hurt_side")
+		elif dir == "left":
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("hurt_side")
+		elif dir == "up":
+			$AnimatedSprite2D.play("hurt_up")
+		elif dir == "down":
+			$AnimatedSprite2D.play("hurt_down")
+
+		
+		$hurt_timer.start()
+			
+
 		
 
 
@@ -232,3 +267,8 @@ func die():
 	
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	
+
+
+func _on_hurt_timer_timeout() -> void:
+	is_hit = false
+	play_anim(0)

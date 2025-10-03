@@ -111,6 +111,8 @@ func die():
 		$CollisionShape2D.set_deferred("disabled", true)
 	if has_node("enemy_hitbox/CollisionShape2D"):
 		$enemy_hitbox/CollisionShape2D.set_deferred("disabled", true)
+	if has_node("detection_area/CollisionShape2D"):
+		$detection_area/CollisionShape2D.set_deferred("disabled", true)
 
 	update_health()
 	$AnimatedSprite2D.play("death")

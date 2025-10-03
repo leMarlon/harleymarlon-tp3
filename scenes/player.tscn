@@ -1,8 +1,9 @@
-[gd_scene load_steps=59 format=3 uid="uid://curtwtkw8ymjl"]
+[gd_scene load_steps=63 format=3 uid="uid://curtwtkw8ymjl"]
 
 [ext_resource type="Script" uid="uid://cm7a6i6vwbti7" path="res://scripts/player.gd" id="1_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://b2rukkn0stupc" path="res://sprites/characters/player.png" id="2_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://bso6ya42ghhip" path="res://sound_effects/player/death.mp3" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://c2k30svrfxlll" path="res://sprites/characters/player_sheet2.png" id="3_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://dqhuh5qrpcqda" path="res://sound_effects/player/slash.mp3" id="4_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
@@ -56,6 +57,18 @@ region = Rect2(96, 288, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
 atlas = ExtResource("2_qlg0r")
 region = Rect2(144, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxlsd"]
+atlas = ExtResource("3_qlg0r")
+region = Rect2(2, 480, 48, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha2mi"]
+atlas = ExtResource("3_qlg0r")
+region = Rect2(2, 527, 48, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apa73"]
+atlas = ExtResource("3_qlg0r")
+region = Rect2(3, 574, 48, 47)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
 atlas = ExtResource("2_qlg0r")
@@ -265,9 +278,28 @@ animations = [{
 "name": &"downslash",
 "speed": 9.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxlsd")
+}],
 "loop": true,
-"name": &"new_animation",
+"name": &"hurt_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha2mi")
+}],
+"loop": true,
+"name": &"hurt_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apa73")
+}],
+"loop": true,
+"name": &"hurt_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -437,7 +469,7 @@ script = ExtResource("1_y4r1p")
 position = Vector2(16, -1)
 scale = Vector2(1.4502, 1.4072)
 sprite_frames = SubResource("SpriteFrames_qlg0r")
-animation = &"death"
+animation = &"hurt_down"
 offset = Vector2(-7.415, -15.01)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -478,8 +510,12 @@ volume_db = 2.904
 stream = ExtResource("4_qlg0r")
 volume_db = 2.588
 
+[node name="hurt_timer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
 [connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]
+[connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]
