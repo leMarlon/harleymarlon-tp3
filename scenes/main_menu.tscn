@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dsquenbk2imxu" path="res://scripts/game_over.gd" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://ce4ftv6ofceu2" path="res://imgs/background.png" id="1_wu84c"]
-[ext_resource type="Texture2D" uid="uid://cmyqmxpduiogu" path="res://imgs/game_title.png" id="2_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://k53eoo8u0bhy" path="res://imgs/custom-terraria-logo_tp3.png" id="2_oa1go"]
 [ext_resource type="Script" uid="uid://bhtnbow7h74pc" path="res://scripts/exit_button.gd" id="4_8ln24"]
 [ext_resource type="Texture2D" uid="uid://cans06mi7kcln" path="res://imgs/start_btn.png" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://qp1uo0b6kimb" path="res://imgs/exit_btn.png" id="5_rtw2f"]
@@ -51,7 +51,7 @@ offset_top = 11.0
 offset_right = 740.0
 offset_bottom = 106.0
 scale = Vector2(1.21107, 1.46089)
-texture = ExtResource("2_rtw2f")
+texture = ExtResource("2_oa1go")
 stretch_mode = 3
 
 [node name="play_button" type="Button" parent="."]
@@ -62,7 +62,9 @@ offset_right = 977.0
 offset_bottom = 415.0
 scale = Vector2(0.462804, 0.674226)
 theme_override_font_sizes/font_size = 66
+toggle_mode = true
 flat = true
+expand_icon = true
 script = ExtResource("1_l6cm7")
 
 [node name="TextureRect" type="TextureRect" parent="play_button"]
@@ -84,6 +86,7 @@ offset_bottom = 534.0
 scale = Vector2(0.462804, 0.674226)
 theme_override_font_sizes/font_size = 66
 flat = true
+expand_icon = true
 script = ExtResource("4_8ln24")
 
 [node name="TextureRect" type="TextureRect" parent="exit_button"]

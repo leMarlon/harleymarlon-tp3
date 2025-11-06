@@ -1,16 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://duxwfm83dmnvc"]
+[gd_scene load_steps=16 format=3 uid="uid://duxwfm83dmnvc"]
 
 [ext_resource type="Texture2D" uid="uid://bu23e3ykopirm" path="res://sprites/tilesets/plains.png" id="1_4wyf3"]
-[ext_resource type="Script" uid="uid://b88acq6j2r0rx" path="res://world.gd" id="1_qfnet"]
+[ext_resource type="Script" uid="uid://b88acq6j2r0rx" path="res://scripts/world.gd" id="1_qfnet"]
 [ext_resource type="Texture2D" uid="uid://tvxgawacokb1" path="res://sprites/tilesets/grass.png" id="2_k0juu"]
 [ext_resource type="Texture2D" uid="uid://ckoayaltl60vp" path="res://sprites/objects/objects.png" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://curtwtkw8ymjl" path="res://scenes/player.tscn" id="4_k0juu"]
 [ext_resource type="PackedScene" uid="uid://dedvq1bqt8pww" path="res://scenes/slime.tscn" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://bkfftvpcp030a" path="res://scenes/heart.tscn" id="7_i7141"]
-[ext_resource type="Texture2D" uid="uid://cuhb0woi0k6mr" path="res://imgs/text.png" id="8_4mrxx"]
-[ext_resource type="Script" uid="uid://d1gwi3ep5vsup" path="res://scripts/exit_button_2.gd" id="9_e3hyu"]
-[ext_resource type="Texture2D" uid="uid://qp1uo0b6kimb" path="res://imgs/exit_btn.png" id="10_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://cktj0ifaqpxli" path="res://imgs/text_indicator.png" id="8_w7kh3"]
 [ext_resource type="AudioStream" uid="uid://ct37pi27gkeae" path="res://sound_effects/Pokemon Ruby_Sapphire_Emerald- Littleroot Town - pokemonmusicmaster (youtube).mp3" id="11_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://bri8jesltvvgn" path="res://scenes/pause.tscn" id="11_q5onr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
 texture = ExtResource("1_4wyf3")
@@ -159,44 +158,25 @@ scale = Vector2(0.35, 0.35)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="controls" type="Label" parent="CanvasLayer"]
+offset_top = -27.0
 offset_right = 382.0
-offset_bottom = 102.0
+offset_bottom = 39.0
 label_settings = SubResource("LabelSettings_i7141")
 horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/controls"]
 layout_mode = 0
-offset_left = 294.0
-offset_top = 17.0
-offset_right = 386.0
-offset_bottom = 76.0
-texture = ExtResource("8_4mrxx")
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 378.0
+offset_bottom = 74.0
+texture = ExtResource("8_w7kh3")
 expand_mode = 1
 
-[node name="exit_button2" type="Button" parent="CanvasLayer"]
-offset_left = 456.0
-offset_top = 390.0
-offset_right = 977.0
-offset_bottom = 534.0
-scale = Vector2(0.462804, 0.674226)
-theme_override_font_sizes/font_size = 66
-flat = true
-script = ExtResource("9_e3hyu")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/exit_button2"]
-layout_mode = 0
-offset_left = -317.629
-offset_top = -576.958
-offset_right = -300.629
-offset_bottom = -561.958
-scale = Vector2(7.48, 2.88)
-texture = ExtResource("10_e3hyu")
-expand_mode = 2
+[node name="Control" parent="CanvasLayer" instance=ExtResource("11_q5onr")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_e3hyu")
 volume_db = -18.143
 autoplay = true
 parameters/looping = true
-
-[connection signal="pressed" from="CanvasLayer/exit_button2" to="CanvasLayer/exit_button2" method="_on_pressed"]

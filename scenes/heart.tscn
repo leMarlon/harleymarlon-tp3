@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://bkfftvpcp030a"]
 
-[ext_resource type="Script" uid="uid://klx8e0x4wkfp" path="res://scenes/heart.gd" id="1_ycbwg"]
+[ext_resource type="Script" uid="uid://klx8e0x4wkfp" path="res://scripts/heart.gd" id="1_ycbwg"]
 [ext_resource type="Texture2D" uid="uid://pjmpbaln0raa" path="res://sprites/objects/heart-frames.png" id="2_krgnv"]
 [ext_resource type="AudioStream" uid="uid://csbwgnp7vmfcu" path="res://sound_effects/player/heart.mp3" id="3_krgnv"]
 

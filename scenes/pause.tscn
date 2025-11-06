@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://bri8jesltvvgn"]
+
+[ext_resource type="Script" uid="uid://p46yov1nlyc5" path="res://scripts/pause.gd" id="1_f1d2v"]
+[ext_resource type="Shader" uid="uid://cxl05p52xlssi" path="res://shaders/blur.gdshader" id="2_r8yp4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmhi0"]
+shader = ExtResource("2_r8yp4")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_r1fnm"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.87]
+}
+
+[sub_resource type="Animation" id="Animation_wen6a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cml1b"]
+_data = {
+&"RESET": SubResource("Animation_wen6a"),
+&"blur": SubResource("Animation_r1fnm")
+}
+
+[node name="Control" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f1d2v")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.0156863, 0.0156863, 0.0156863, 0.607843)
+material = SubResource("ShaderMaterial_xmhi0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -33.0
+offset_right = 35.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(35, 33)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="blur" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cml1b")
+}
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
