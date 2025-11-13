@@ -3,21 +3,25 @@ if global.quest_begun == false:
 	set global.quest_begun = true
 	Old Man: Greetings young man !
 	- Leave me alone..
-		Old Man: Goodbye... => END
+		Old Man: Goodbye... => END 
+		set dialogue_open = false
 	- Hi !
 		Old Man: You seem lost, young man, do you want assistance ?
 		- No thank you. Goodbye.
 			Old Man: Do not get lost young man... => END
+			set dialogue_open = false
 		- Yes please !
 			Old Man: There is a cave, up the hill, but to get there, you must do something for me...
 			Old Man: My key to this chest fell down down the road, but theses monsters are blocking it.. Defeat the slime monsters, get me the key, and then you may be able to open the chest that is next to me !
 			Old Man : Once you open this chest and give me the item..i'll give you the tool you need to open up the hill.. => END
+			set dialogue_open = false
 		
 if global.quest_begun == true:
 	if global.given_oldman_item == false:
 		Old Man: [[Oh my back...|Get the key for me young man !|]]...Do you need more assistance ?
 		- Who are you ?
 			Old Man: An old man who needs help... => END
+			set dialogue_open = false
 		- I have something for you..
 			Old Man: Oh ! Have you found my key ?
 			- Yes !
@@ -25,6 +29,8 @@ if global.quest_begun == true:
 				set global.given_oldman_item = true
 				Old Man: Ah ! What a useful young man. You know what, open the chest, take what's inside for yourself, it is a gift for helping me !
 				Old Man: Take it and go destroy the rock up the hill, behind it, you will find something interesting... => END
+				set dialogue_open = false
 			else:
 				Old Man: ... => END
+				set dialogue_open = false
 => END

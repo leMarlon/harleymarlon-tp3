@@ -46,13 +46,13 @@ func _physics_process(delta):
 	attack()
 	enemy_attack()
 	update_health()
-	if oldman_in_range == true:
+	if oldman_in_range == true and dialogue_open == false:
 		if Input.is_action_just_pressed("use"):
 			var b = DialogueManager.show_example_dialogue_balloon(load("res://dialogues/main.dialogue"), "main")
 			dialogue_open = true
 			b.tree_exited.connect(_on_dialogue_closed)
 
-	if learntoplay_inrange == true:
+	if learntoplay_inrange == true and dialogue_open == false:
 		if Input.is_action_just_pressed("use"):
 			var b2 = DialogueManager.show_example_dialogue_balloon(load("res://dialogues/learn_to_play.dialogue"), "start")
 			dialogue_open = true
