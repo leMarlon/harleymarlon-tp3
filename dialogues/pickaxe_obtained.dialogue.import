@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ddebb2jbmesle"
+path="res://.godot/imported/pickaxe_obtained.dialogue-99498181be573e3311187f4834dac48e.tres"
+
+[deps]
+
+source_file="res://dialogues/pickaxe_obtained.dialogue"
+dest_files=["res://.godot/imported/pickaxe_obtained.dialogue-99498181be573e3311187f4834dac48e.tres"]
+
+[params]
+
+defaults=true

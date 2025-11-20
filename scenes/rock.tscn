@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://lbj0e477vuwl"]
+
+[ext_resource type="Texture2D" uid="uid://b4mln4lkdsdds" path="res://sprites/objects/rock_2.png" id="1_1di36"]
+[ext_resource type="Script" uid="uid://dhy07qyqc67bm" path="res://scripts/rock.gd" id="1_mek2u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mek2u"]
+atlas = ExtResource("1_1di36")
+region = Rect2(0, 0, 360, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ik6fu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mek2u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_872ht"]
+size = Vector2(180.302, 126.04)
+
+[node name="Rock" type="CharacterBody2D"]
+script = ExtResource("1_mek2u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ik6fu")
+animation = &"idle"
+offset = Vector2(0, -6)
+
+[node name="detection_area" type="Area2D" parent="."]
+position = Vector2(1, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(-2.63322, -10.7137)
+scale = Vector2(1.77536, 2.13763)
+shape = SubResource("RectangleShape2D_872ht")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -7)
+scale = Vector2(1.77536, 2.13763)
+shape = SubResource("RectangleShape2D_872ht")

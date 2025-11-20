@@ -11,6 +11,7 @@ var current_dir = "none"
 
 var oldman_in_range = false
 var learntoplay_inrange = false
+var rockinrange = false
 
 var ismoving = false
 var enemy_inattack_range = false
@@ -56,6 +57,10 @@ func _physics_process(delta):
 				var b = DialogueManager.show_example_dialogue_balloon(load("res://dialogues/main.dialogue"), "main")
 				dialogue_open = true
 				b.tree_exited.connect(_on_dialogue_closed)
+			if rockinrange == true:
+				var b3 = DialogueManager.show_example_dialogue_balloon(load("res://dialogues/rock.dialogue"), "start")
+				dialogue_open = true
+				b3.tree_exited.connect(_on_dialogue_closed)
 	
 		
 	if health <= 0 and player_alive:
@@ -304,18 +309,36 @@ func _on_hurt_timer_timeout() -> void:
 	is_hit = false
 
 
-func _on_detection_area_body_entered(body):
-	if body.has_method("old_man"):
-		oldman_in_range = true
-	elif body.has_method("learn"):
-		learntoplay_inrange = true
+func _on_detection_area_body_entered(node):
+	_process_enter(node)
 
-func _on_detection_area_body_exited(body):
-	if body.has_method("old_man"):
+func _on_detection_area_area_entered(node):
+	_process_enter(node)
+
+
+func _on_detection_area_body_exited(node):
+	_process_exit(node)
+
+func _on_detection_area_area_exited(node):
+	_process_exit(node)
+
+
+func _process_enter(node):
+	if node.has_method("old_man"):
+		oldman_in_range = true
+	elif node.has_method("learn"):
+		learntoplay_inrange = true
+	elif node.has_method("rock"):
+		rockinrange = true
+
+
+func _process_exit(node):
+	if node.has_method("old_man"):
 		oldman_in_range = false
-	if body.has_method("learn"):
+	elif node.has_method("learn"):
 		learntoplay_inrange = false
-		
+	elif node.has_method("rock"):
+		rockinrange = false
 		
 func current_camera():
 	if global.current_scene == "world":

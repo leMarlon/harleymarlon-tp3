@@ -4,6 +4,8 @@ var player_current_attack = false
 var found_oldman_item = false
 var given_oldman_item = false
 var quest_begun = false
+var obtained_pickaxe = false
+var chosen_yes_break_boulder = false
 
 var current_scene = "world"
 var transition_scene = false

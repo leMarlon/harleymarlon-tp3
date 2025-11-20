@@ -1,0 +1,13 @@
+~ start
+Do you wanna break the boulder ?
+- Yes
+	if global.obtained_pickaxe == true:
+		set global.chosen_yes_break_boulder = true
+		
+		Beware of what's behind.. => END
+		
+	else
+		You'll need a pickaxe... => END
+- No
+	Good choice...
+=> END

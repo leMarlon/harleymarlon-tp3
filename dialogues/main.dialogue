@@ -12,7 +12,7 @@ if global.quest_begun == false:
 			Old Man: There is a cave, up the hill, but to get there, you must do something for me...
 			Old Man: My key to this chest fell down down the road, but theses monsters are blocking it.. Defeat the slime monsters, get me the key, and then you may be able to open the chest that is next to me !
 			Old Man : Once you open this chest and give me the item..i'll give you the tool you need to open up the hill.. => END
-e
+
 		
 if global.quest_begun == true:
 	if global.given_oldman_item == false:

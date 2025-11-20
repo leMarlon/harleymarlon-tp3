@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://duxwfm83dmnvc"]
+[gd_scene load_steps=25 format=3 uid="uid://duxwfm83dmnvc"]
 
 [ext_resource type="Texture2D" uid="uid://bu23e3ykopirm" path="res://sprites/tilesets/plains.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://b88acq6j2r0rx" path="res://scripts/world.gd" id="1_qfnet"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://ct37pi27gkeae" path="res://sound_effects/Pokemon Ruby_Sapphire_Emerald- Littleroot Town - pokemonmusicmaster (youtube).mp3" id="11_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://bri8jesltvvgn" path="res://scenes/pause.tscn" id="11_q5onr"]
 [ext_resource type="PackedScene" uid="uid://bullkuwyvq0oc" path="res://scenes/press_to_learn.tscn" id="14_o8fc1"]
+[ext_resource type="PackedScene" uid="uid://lbj0e477vuwl" path="res://scenes/rock.tscn" id="15_xo05s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jhx03"]
 radius = 20.6667
@@ -142,6 +143,10 @@ size = Vector2(82, 154)
 [node name="world" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_qfnet")
+
+[node name="Rock" parent="." instance=ExtResource("15_xo05s")]
+position = Vector2(777, 62)
+scale = Vector2(0.3, 0.3)
 
 [node name="player" parent="." instance=ExtResource("4_k0juu")]
 position = Vector2(78, 114)
