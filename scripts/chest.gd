@@ -7,6 +7,6 @@ func _ready():
 
 
 	
-func _on_key_chest_opened() -> void:
+func _on_key_chest_opened():
 	$AnimatedSprite2D.play("opened")
 	emit_signal("pickaxe_obtained")

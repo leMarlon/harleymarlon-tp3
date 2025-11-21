@@ -26,6 +26,7 @@ animations = [{
 
 [node name="pickaxe_text" type="CharacterBody2D"]
 visible = false
+z_index = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(12, 4)

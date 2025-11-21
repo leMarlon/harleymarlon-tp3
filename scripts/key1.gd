@@ -33,6 +33,7 @@ func _process(delta):
 			if Input.is_action_just_pressed("use"):
 				print("A chest was opened !")
 				emit_signal("chest_opened")
+				keytaken = false
 				
 				
 

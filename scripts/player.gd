@@ -381,5 +381,5 @@ func boulder_break():
 	
 
 
-func _on_pickaxe_timer_timeout() -> void:
+func _on_pickaxe_timer_timeout():
 	$pickaxe_text.visible = false

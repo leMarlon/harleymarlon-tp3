@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bullkuwyvq0oc" path="res://scenes/press_to_learn.tscn" id="14_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://lbj0e477vuwl" path="res://scenes/rock.tscn" id="15_xo05s"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jhx03"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xo05s"]
+size = Vector2(16.6667, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8fc1"]
 atlas = ExtResource("3_q5onr")
@@ -163,15 +163,12 @@ script = ExtResource("3_jhx03")
 [node name="chest zone" type="Area2D" parent="chest"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="chest/chest zone"]
-shape = SubResource("CircleShape2D_jhx03")
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_xo05s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="chest"]
 sprite_frames = SubResource("SpriteFrames_dss4m")
 animation = &"closed"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chest"]
-position = Vector2(-0.833336, -0.833334)
-shape = SubResource("CircleShape2D_jhx03")
 
 [node name="TileMap" type="TileMap" parent="." groups=["world_map"]]
 y_sort_enabled = true
@@ -223,6 +220,8 @@ position = Vector2(74, 37)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("11_q5onr")]
+offset_left = -2.0
+offset_right = -2.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_e3hyu")
@@ -241,9 +240,24 @@ shape = SubResource("RectangleShape2D_o8fc1")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisions"]
 polygon = PackedVector2Array(0, 1, 642.49, 1, 659, 8, 660, 30, 677, 32, 679, 63, 698, 64, 737, 64, 736, 0, 737, -27, 736, -81, 737, -127, 820.696, -126.291, 818, -58, 819, 1, 820, 63, 867, 77, 915, 80, 914, 93, 1010, 98, 1013, 111, 1153, 114, 1153, 258, 1233, 259, 1241, 364, 1150, 366, 1152, 657, 1007, 654, 1007, 594, 977, 596, 974, 545, 959, 543, 937, 533, 921, 529, 839, 532, 835, 547, 834, 593, 806, 595, 804, 621, 789, 633, 789, 657, 379, 654, 381, 628, 366, 623, 358, 607, 337, 605, 332, 576, 183, 578, 170, 584, 165, 593, 137, 594, 131, 605, 114, 613, 114, 624, 101, 632, 99, 651, 99, 659, -3, 656, -1, 145, -2, 30, -3, -17, -52, -15, -208, 664, -148, 724, 137, 824, 476, 849, 966, 858, 1214, 805, 1455, 708, 1499, 447, 1452, 140, 1368, -111, 1223, -143, 865, -234, 464, -212, 178, -140, 56, -124, -6, -46, -3, -25, 0, -6)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("14_o8fc1")]
+[node name="pressmetolearn" parent="." instance=ExtResource("14_o8fc1")]
 position = Vector2(181, 72)
 scale = Vector2(0.3, 0.3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+process_priority = 2
+visible = false
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_dss4m")
+animation = &"closed"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+process_priority = 2
+z_index = 3
+position = Vector2(125, 38)
+polygon = PackedVector2Array(-6.66666, -7.5, 6.66666, -7.5, 6.66666, 5.83333, -6.66666, 5.83333)
 
 [connection signal="chest_opened" from="key1" to="chest" method="_on_key_chest_opened"]
 [connection signal="pickaxe_obtained" from="chest" to="player" method="_on_chest_pickaxe_obtained"]
