@@ -33,9 +33,7 @@ func _process(delta):
 			if Input.is_action_just_pressed("use"):
 				print("A chest was opened !")
 				emit_signal("chest_opened")
-				var b3 = DialogueManager.show_example_dialogue_balloon(load("res://dialogues/pickaxe_obtained.dialogue"), "start")
-				dialogue_open = true
-				b3.tree_exited.connect(_on_dialogue_closed)
+				
 				
 
 
@@ -55,7 +53,3 @@ func _on_chest_zone_body_exited(body: Node2D) -> void:
 func _on_dialogue_closed() -> void:
 	dialogue_open = false
 	
-	if global.chosen_yes_break_boulder and global.obtained_pickaxe == true:
-		var rock = get_tree().current_scene.get_node("Rock")
-		if rock:
-			rock.queue_free()

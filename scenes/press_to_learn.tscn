@@ -1,24 +1,24 @@
 [gd_scene load_steps=7 format=3 uid="uid://bullkuwyvq0oc"]
 
 [ext_resource type="Script" uid="uid://juc03elqwb41" path="res://scripts/press_to_learn.gd" id="1_3ck4q"]
-[ext_resource type="Texture2D" uid="uid://yaeve88kmfg1" path="res://sprites/objects/press_me.png" id="2_qieql"]
+[ext_resource type="Texture2D" uid="uid://dd6ib7i4wke4j" path="res://imgs/pixel-speech-bubble.png" id="2_3ck4q"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nts6f"]
-atlas = ExtResource("2_qieql")
-region = Rect2(0, 0, 891, 180)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dod8"]
+atlas = ExtResource("2_3ck4q")
+region = Rect2(0, 0, 959, 234)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uadk"]
-atlas = ExtResource("2_qieql")
-region = Rect2(0, 7, 891, 173)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb4pu"]
+atlas = ExtResource("2_3ck4q")
+region = Rect2(0, 8, 959, 224)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bcsiq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nts6f")
+"texture": SubResource("AtlasTexture_5dod8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5uadk")
+"texture": SubResource("AtlasTexture_hb4pu")
 }],
 "loop": true,
 "name": &"idle",
@@ -36,7 +36,7 @@ position = Vector2(12, 4)
 scale = Vector2(0.316667, 0.316667)
 sprite_frames = SubResource("SpriteFrames_bcsiq")
 animation = &"idle"
-frame_progress = 0.67888
+frame_progress = 0.698161
 
 [node name="detection_area" type="Area2D" parent="."]
 position = Vector2(1, 0)

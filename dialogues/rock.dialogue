@@ -1,9 +1,9 @@
 ~ start
+
 Do you wanna break the boulder ?
 - Yes
 	if global.obtained_pickaxe == true:
-		set global.chosen_yes_break_boulder = true
-		
+		set global.breakboulder = true
 		Beware of what's behind.. => END
 		
 	else

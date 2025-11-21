@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://curtwtkw8ymjl"]
+[gd_scene load_steps=67 format=3 uid="uid://curtwtkw8ymjl"]
 
 [ext_resource type="Script" uid="uid://cm7a6i6vwbti7" path="res://scripts/player.gd" id="1_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://b2rukkn0stupc" path="res://sprites/characters/player.png" id="2_qlg0r"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c2k30svrfxlll" path="res://sprites/characters/player_sheet2.png" id="3_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://dqhuh5qrpcqda" path="res://sound_effects/player/slash.mp3" id="4_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cusc7fo5mm8h8" path="res://sound_effects/player/hurt.mp3" id="4_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://bld766j2kadoe" path="res://scenes/pickaxetext.tscn" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://csbwgnp7vmfcu" path="res://sound_effects/player/heart.mp3" id="8_smehm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tuyoq"]
 radius = 18.0
@@ -510,6 +512,9 @@ show_percentage = false
 [node name="regin_timer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="pickaxe_timer" type="Timer" parent="."]
+wait_time = 3.0
+
 [node name="hurt" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_tuyoq")
 volume_db = 7.54
@@ -530,6 +535,14 @@ wait_time = 0.5
 [node name="cliffside_camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
 
+[node name="pickaxe_text" parent="." instance=ExtResource("7_fjrip")]
+position = Vector2(1, -33)
+scale = Vector2(0.35, 0.35)
+
+[node name="toggle_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_smehm")
+volume_db = 6.19
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
@@ -537,4 +550,5 @@ position = Vector2(1, 0)
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
 [connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]
+[connection signal="timeout" from="pickaxe_timer" to="." method="_on_pickaxe_timer_timeout"]
 [connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]

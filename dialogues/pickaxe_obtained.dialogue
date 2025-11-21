@@ -1,4 +1,4 @@
 ~ start
-	set global.obtained_pickaxe = true
+	
 	You've obtained the pickaxe ! Use it to crush the boulder up the hill !
 => END

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bld766j2kadoe"]
+
+[ext_resource type="Texture2D" uid="uid://ylfd0ghcs4h7" path="res://sprites/objects/pickaxe_text.png" id="1_txdk8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rdhi"]
+atlas = ExtResource("1_txdk8")
+region = Rect2(0, 0, 702, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl7ft"]
+atlas = ExtResource("1_txdk8")
+region = Rect2(0, 8, 702, 199)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bcsiq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rdhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl7ft")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[node name="pickaxe_text" type="CharacterBody2D"]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(12, 4)
+scale = Vector2(0.316667, 0.316667)
+sprite_frames = SubResource("SpriteFrames_bcsiq")
+animation = &"idle"
+frame_progress = 0.243033

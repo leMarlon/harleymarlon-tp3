@@ -7,6 +7,7 @@ var current_dir = "none"
 @onready var deathsound = $death
 @onready var slashsound = $slash
 @onready var hurtsound = $hurt
+@onready var togglesound = $toggle_sound
 
 
 var oldman_in_range = false
@@ -38,6 +39,9 @@ func _ready():
 	
 	
 func _physics_process(delta):
+	
+	
+			
 	if dialogue_open:
 		play_anim(0)              # keep facing-based idle
 		velocity = Vector2.ZERO
@@ -47,6 +51,8 @@ func _physics_process(delta):
 	attack()
 	enemy_attack()
 	update_health()
+	if global.breakboulder == true:
+		boulder_break()
 	if dialogue_open == false:
 		if Input.is_action_just_pressed("use"):
 			if learntoplay_inrange == true:
@@ -58,7 +64,11 @@ func _physics_process(delta):
 				dialogue_open = true
 				b.tree_exited.connect(_on_dialogue_closed)
 			if rockinrange == true:
-				var b3 = DialogueManager.show_example_dialogue_balloon(load("res://dialogues/rock.dialogue"), "start")
+				var b3 = DialogueManager.show_example_dialogue_balloon(
+						load("res://dialogues/rock.dialogue"),
+						"start",
+						[self]  
+					)				
 				dialogue_open = true
 				b3.tree_exited.connect(_on_dialogue_closed)
 	
@@ -111,6 +121,8 @@ func player_movement(delta):
 	elif not ismoving and was_moving:
 		pass
 		
+		
+
 func play_anim(movement):
 	var dir = current_dir
 	var anim = $AnimatedSprite2D
@@ -332,6 +344,8 @@ func _process_enter(node):
 		rockinrange = true
 
 
+
+
 func _process_exit(node):
 	if node.has_method("old_man"):
 		oldman_in_range = false
@@ -350,3 +364,22 @@ func current_camera():
 		
 func _on_dialogue_closed() -> void:
 	dialogue_open = false
+
+
+func _on_chest_pickaxe_obtained() -> void:
+	global.obtained_pickaxe = true
+	$pickaxe_text.visible = true
+	$pickaxe_timer.start()
+	togglesound.play()
+
+func boulder_break():
+	
+	var rock = get_parent().get_node_or_null("rock")
+	if rock:
+		print("hehe")
+		rock.queue_free()
+	
+
+
+func _on_pickaxe_timer_timeout() -> void:
+	$pickaxe_text.visible = false
